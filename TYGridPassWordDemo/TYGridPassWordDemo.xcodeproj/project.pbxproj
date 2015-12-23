@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		292B87EF1C2A3BB100D8DE44 /* TYGridPassWordPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 292B87EE1C2A3BB100D8DE44 /* TYGridPassWordPoint.m */; };
+		292B87EF1C2A3BB100D8DE44 /* TYGridPassWordNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 292B87EE1C2A3BB100D8DE44 /* TYGridPassWordNode.m */; };
 		292B87F21C2A403900D8DE44 /* UIColor+RGB.m in Sources */ = {isa = PBXBuildFile; fileRef = 292B87F11C2A403900D8DE44 /* UIColor+RGB.m */; };
 		292B87F51C2A479700D8DE44 /* TYGridPassWordLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 292B87F41C2A479700D8DE44 /* TYGridPassWordLineView.m */; };
 		292B87F81C2A4CD400D8DE44 /* TYGridPassWordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 292B87F71C2A4CD400D8DE44 /* TYGridPassWordView.m */; };
@@ -20,8 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		292B87ED1C2A3BB100D8DE44 /* TYGridPassWordPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TYGridPassWordPoint.h; path = ../TYGridPassWord/TYGridPassWordPoint.h; sourceTree = "<group>"; };
-		292B87EE1C2A3BB100D8DE44 /* TYGridPassWordPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TYGridPassWordPoint.m; path = ../TYGridPassWord/TYGridPassWordPoint.m; sourceTree = "<group>"; };
+		292B87ED1C2A3BB100D8DE44 /* TYGridPassWordNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TYGridPassWordNode.h; path = ../TYGridPassWord/TYGridPassWordNode.h; sourceTree = "<group>"; };
+		292B87EE1C2A3BB100D8DE44 /* TYGridPassWordNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TYGridPassWordNode.m; path = ../TYGridPassWord/TYGridPassWordNode.m; sourceTree = "<group>"; };
 		292B87F01C2A403900D8DE44 /* UIColor+RGB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+RGB.h"; path = "../TYGridPassWord/UIColor+RGB.h"; sourceTree = "<group>"; };
 		292B87F11C2A403900D8DE44 /* UIColor+RGB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+RGB.m"; path = "../TYGridPassWord/UIColor+RGB.m"; sourceTree = "<group>"; };
 		292B87F31C2A479700D8DE44 /* TYGridPassWordLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TYGridPassWordLineView.h; path = ../TYGridPassWord/TYGridPassWordLineView.h; sourceTree = "<group>"; };
@@ -95,8 +95,8 @@
 		297192561C27ED1C00F681B6 /* TYGridPassWord */ = {
 			isa = PBXGroup;
 			children = (
-				292B87ED1C2A3BB100D8DE44 /* TYGridPassWordPoint.h */,
-				292B87EE1C2A3BB100D8DE44 /* TYGridPassWordPoint.m */,
+				292B87ED1C2A3BB100D8DE44 /* TYGridPassWordNode.h */,
+				292B87EE1C2A3BB100D8DE44 /* TYGridPassWordNode.m */,
 				292B87F31C2A479700D8DE44 /* TYGridPassWordLineView.h */,
 				292B87F41C2A479700D8DE44 /* TYGridPassWordLineView.m */,
 				292B87F61C2A4CD400D8DE44 /* TYGridPassWordView.h */,
@@ -177,7 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				292B87EF1C2A3BB100D8DE44 /* TYGridPassWordPoint.m in Sources */,
+				292B87EF1C2A3BB100D8DE44 /* TYGridPassWordNode.m in Sources */,
 				297192471C27ED1200F681B6 /* ViewController.m in Sources */,
 				297192441C27ED1200F681B6 /* AppDelegate.m in Sources */,
 				292B87F21C2A403900D8DE44 /* UIColor+RGB.m in Sources */,

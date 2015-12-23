@@ -8,50 +8,28 @@
 
 #import "TYGridPassWordView.h"
 #import "TYGridPassWordLineView.h"
-#import "TYGridPassWordPoint.h"
+#import "TYGridPassWordNode.h"
+
+#define TYGridPassWordViewMatrixSize        3
 
 @interface TYGridPassWordView ()
 
-@property (nonatomic, strong) NSArray<TYGridPassWordPoint *> *arrayPoints;
+@property (nonatomic, strong) NSArray<TYGridPassWordNode *> *arrayNodes;
 @property (nonatomic, strong) TYGridPassWordLineView *passWordLineView;
 @property (nonatomic, strong) NSMutableArray *arraySelect;
 @property (nonatomic, assign) BOOL isTouched;
 @property (nonatomic, assign) CGPoint movingPoint;
+@property (nonatomic, assign) dispatch_once_t once;
 
 @end
 
 @implementation TYGridPassWordView
 
-- (id)initWithFrame:(CGRect)frame
+- (void)layoutSubviews
 {
-    self = [super initWithFrame:frame];
-    if (self)
-    {
+    dispatch_once(&_once, ^{
         [self configTYGridPassWordView];
-    }
-    
-    return self;
-}
-
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if (self)
-    {
-        [self configTYGridPassWordView];
-    }
-    
-    return self;
-}
-
-- (id)init
-{
-    self = [super init];
-    if (self)
-    {
-        [self configTYGridPassWordView];
-    }
-    return self;
+    });
 }
 
 - (void)configTYGridPassWordView
@@ -59,30 +37,30 @@
     // round
     CGFloat startX = 0.0;
     CGFloat startY = 0.0;
-    CGFloat marigin = (TYGridPassWordViewLength - TYGridPassWordPointLength * 3) / 2;
+    CGFloat marigin = (TYGridPassWordViewSize - TYGridPassWordNodeSize * 3) / 2;
     
-    NSMutableArray<TYGridPassWordPoint *> *array = [[NSMutableArray alloc] init];
+    NSMutableArray<TYGridPassWordNode *> *array = [[NSMutableArray alloc] init];
     for (int i=0; i<TYGridPassWordViewMatrixSize; i++)
     {
         CGFloat tempLineHeight = 0.0;
         for (int j=0; j<TYGridPassWordViewMatrixSize; j++)
         {
-            TYGridPassWordPoint *circle = [[TYGridPassWordPoint alloc] init];
-            [circle setFrame:CGRectMake(startX, startY, circle.frame.size.width, circle.frame.size.height)];
-            [circle setState:TYGridPassWordPointStateNormol];
-            [self addSubview:circle];
-            [array addObject:circle];
+            TYGridPassWordNode *node = [[TYGridPassWordNode alloc] init];
+            [node setFrame:CGRectMake(startX, startY, node.frame.size.width, node.frame.size.height)];
+            [node setState:TYGridPassWordNodeStateNormol];
+            [self addSubview:node];
+            [array addObject:node];
             
-            startX += circle.frame.size.width;
+            startX += node.frame.size.width;
             startX += marigin;
-            tempLineHeight = circle.frame.size.height;
+            tempLineHeight = node.frame.size.height;
         }
         
         startX = 0;
         startY += tempLineHeight;
         startY += marigin;
     }
-    _arrayPoints = array;
+    _arrayNodes = array;
     
     // Line
     _passWordLineView = [[TYGridPassWordLineView alloc] init];
@@ -96,7 +74,7 @@
     // self
     [self setClipsToBounds:NO];
     [self setBackgroundColor:TYGridPassWordViewBackGroundColor];
-    [self setFrame:CGRectMake(0, 0, TYGridPassWordViewLength, TYGridPassWordViewLength)];
+    [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, TYGridPassWordViewSize, TYGridPassWordViewSize)];
 }
 
 #pragma - mark touchs
@@ -168,9 +146,9 @@
 
 - (void)clearSelect
 {
-    for (TYGridPassWordPoint *circle in self.arrayPoints)
+    for (TYGridPassWordNode *node in self.arrayNodes)
     {
-        [circle setState:TYGridPassWordPointStateNormol];
+        [node setState:TYGridPassWordNodeStateNormol];
     }
     
     [_passWordLineView setState:TYGridPassWordLineViewStateNormal];
@@ -184,44 +162,44 @@
 - (void)refrushView
 {
     // current point
-    NSMutableArray *arrayPoint = [[NSMutableArray alloc] init];
-    for (TYGridPassWordPoint *circle in self.arraySelect)
+    NSMutableArray *arrayNodes = [[NSMutableArray alloc] init];
+    for (TYGridPassWordNode *node in self.arraySelect)
     {
-        [arrayPoint addObject:[NSValue valueWithCGPoint:[circle center]]];
+        [arrayNodes addObject:[NSValue valueWithCGPoint:[node center]]];
     }
     
     // touched point
     if (_isTouched)
     {
-        [arrayPoint addObject:[NSValue valueWithCGPoint:_movingPoint]];
+        [arrayNodes addObject:[NSValue valueWithCGPoint:_movingPoint]];
     }
     
-    [_passWordLineView setArrayPoints:arrayPoint];
+    [_passWordLineView setArrayPoints:arrayNodes];
     [_passWordLineView setNeedsDisplay];
     
-    for (TYGridPassWordPoint *circle in self.arrayPoints)
+    for (TYGridPassWordNode *node in self.arrayNodes)
     {
-        [circle setNeedsDisplay];
+        [node setNeedsDisplay];
     }
 }
 
 - (void)checkCircelIsSelect:(CGPoint)point
 {
-    for (TYGridPassWordPoint *circle in self.arrayPoints)
+    for (TYGridPassWordNode *node in self.arrayNodes)
     {
-        if (circle.state == TYGridPassWordPointStateNormol && CGRectContainsPoint(circle.frame, point) && [self isSmallThanRadius:circle andPoint:point])
+        if (node.state == TYGridPassWordNodeStateNormol && CGRectContainsPoint(node.frame, point) && [self isSmallThanRadius:node andPoint:point])
         {
-            [circle setState:TYGridPassWordPointStateHighLight];
-            [self.arraySelect addObject:circle];
+            [node setState:TYGridPassWordNodeStateHighLight];
+            [self.arraySelect addObject:node];
             break;
         }
     }
 }
 
-- (BOOL)isSmallThanRadius:(TYGridPassWordPoint *)circle andPoint:(CGPoint)point
+- (BOOL)isSmallThanRadius:(TYGridPassWordNode *)node andPoint:(CGPoint)point
 {
-    if (CGRectContainsPoint(CGRectMake(circle.frame.origin.x + circle.frame.size.width * 0.1,
-                                       circle.frame.origin.y + circle.frame.size.height * 0.1, circle.frame.size.width * 0.8, circle.frame.size.height * 0.8), point))
+    if (CGRectContainsPoint(CGRectMake(node.frame.origin.x + node.frame.size.width * 0.1,
+                                       node.frame.origin.y + node.frame.size.height * 0.1, node.frame.size.width * 0.8, node.frame.size.height * 0.8), point))
     {
         return YES;
     }
@@ -233,9 +211,9 @@
 {
     NSMutableString *passWord = [[NSMutableString alloc] init];
     
-    for (TYGridPassWordPoint *circle in self.arraySelect)
+    for (TYGridPassWordNode *node in self.arraySelect)
     {
-        NSInteger index = [self.arrayPoints indexOfObject:circle];
+        NSInteger index = [self.arrayNodes indexOfObject:node] + 1;
         [passWord appendString:[NSString stringWithFormat:@"%i", (int)index]];
     }
     
@@ -244,9 +222,9 @@
 
 - (void)showError
 {
-    for (TYGridPassWordPoint *circle in self.arraySelect)
+    for (TYGridPassWordNode *node in self.arraySelect)
     {
-        [circle setState:TYGridPassWordPointStateError];
+        [node setState:TYGridPassWordNodeStateError];
     }
     
     [_passWordLineView setState:TYGridPassWordLineViewStateError];

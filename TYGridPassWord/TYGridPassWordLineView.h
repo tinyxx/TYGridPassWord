@@ -20,7 +20,7 @@ typedef NS_ENUM(NSUInteger, TYGridPassWordLineViewState)
 
 @interface TYGridPassWordLineView : UIView
 
-@property (nonatomic, strong) NSArray *arrayPoints;
+@property (nonatomic, strong) NSArray<NSValue *> *arrayPoints;
 @property (nonatomic, assign) TYGridPassWordLineViewState state;
 
 @end

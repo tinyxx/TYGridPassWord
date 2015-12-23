@@ -20,7 +20,7 @@
         // Initialization code
         [self setState:TYGridPassWordLineViewStateNormal];
         [self setClipsToBounds:NO];
-        [self setFrame:CGRectMake(0, 0, TYGridPassWordViewLength, TYGridPassWordViewLength)];
+        [self setFrame:CGRectMake(0, 0, TYGridPassWordViewSize, TYGridPassWordViewSize)];
         [self setBackgroundColor:[UIColor clearColor]];
     }
     return self;
@@ -85,7 +85,7 @@ void translateCoordSystem(CGPoint *point)
     point->x = point->x * mult;
     point->y = point->y * mult;
     // translate Coord System
-    point->y = mult * TYGridPassWordViewLength - point->y;
+    point->y = mult * TYGridPassWordViewSize - point->y;
 }
 
 @end

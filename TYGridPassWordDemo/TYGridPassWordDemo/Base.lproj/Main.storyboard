@@ -28,14 +28,40 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="WND-z0-AR9"/>
                                 </connections>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4e-FB-Ora">
+                                <rect key="frame" x="0.0" y="123" width="600" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="FlE-M4-6fc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCM-ZU-AOX">
+                                <rect key="frame" x="0.0" y="86" width="600" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Fl5-hp-8d3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="w4e-FB-Ora" secondAttribute="trailing" id="Jbi-RC-DR1"/>
+                            <constraint firstAttribute="trailing" secondItem="NCM-ZU-AOX" secondAttribute="trailing" id="Opf-OD-c4E"/>
+                            <constraint firstItem="w4e-FB-Ora" firstAttribute="top" secondItem="NCM-ZU-AOX" secondAttribute="bottom" constant="16" id="fU0-lT-8Z8"/>
                             <constraint firstItem="I5F-HJ-OPY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="imO-pn-32a"/>
+                            <constraint firstItem="I5F-HJ-OPY" firstAttribute="top" secondItem="w4e-FB-Ora" secondAttribute="bottom" constant="16" id="ofm-c5-6Bf"/>
                             <constraint firstItem="I5F-HJ-OPY" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wPI-YK-tyC"/>
+                            <constraint firstItem="w4e-FB-Ora" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="yKS-NQ-hyf"/>
+                            <constraint firstItem="NCM-ZU-AOX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zWW-lb-OsQ"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="hintLabel" destination="w4e-FB-Ora" id="vL6-mZ-eL8"/>
+                        <outlet property="passWordLabel" destination="NCM-ZU-AOX" id="Ahn-BX-1I8"/>
                         <outlet property="passWordView" destination="I5F-HJ-OPY" id="hM3-CH-Ibp"/>
                     </connections>
                 </viewController>

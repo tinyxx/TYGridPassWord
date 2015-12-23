@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#define TYGridPassWordViewLength            280
+#define TYGridPassWordViewSize              280    // must be bigger than 70*3 
 #define TYGridPassWordViewBackGroundColor   [UIColor whiteColor]
-#define TYGridPassWordViewMatrixSize        3
 #define TYGridPassWordViewTimeInterval      0.5
 
 @protocol TYGridPassWordViewDelegate <NSObject>

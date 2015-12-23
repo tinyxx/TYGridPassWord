@@ -1,15 +1,15 @@
 //
-//  TYGridPassWordPoint.m
+//  TYGridPassWordNode.m
 //  TYGridPassWordDemo
 //
 //  Created by HongPu on 2015/12/23.
 //  Copyright © 2015年 tinyxx. All rights reserved.
 //
 
-#import "TYGridPassWordPoint.h"
+#import "TYGridPassWordNode.h"
 
 
-@implementation TYGridPassWordPoint
+@implementation TYGridPassWordNode
 
 
 - (id)init
@@ -19,7 +19,7 @@
     {
         // Initialization code
         [self setBackgroundColor:[UIColor whiteColor]];
-        [self setFrame:CGRectMake(0, 0, TYGridPassWordPointLength, TYGridPassWordPointLength)];
+        [self setFrame:CGRectMake(0, 0, TYGridPassWordNodeSize, TYGridPassWordNodeSize)];
     }
     return self;
 }
@@ -43,21 +43,21 @@
     // color
     switch (self.state)
     {
-        case TYGridPassWordPointStateHighLight:
+        case TYGridPassWordNodeStateHighLight:
         {
-            currentColor = TYGridPassWordPointColorHighLight;
+            currentColor = TYGridPassWordNodeColorHighLight;
         }
             break;
             
-        case TYGridPassWordPointStateError:
+        case TYGridPassWordNodeStateError:
         {
-            currentColor = TYGridPassWordPointColorError;
+            currentColor = TYGridPassWordNodeColorError;
         }
             break;
             
         default:
         {
-            currentColor = TYGridPassWordPointColorNormol;
+            currentColor = TYGridPassWordNodeColorNormol;
         }
             break;
     }
