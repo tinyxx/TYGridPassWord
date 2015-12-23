@@ -18,8 +18,6 @@ static NSString* defaultPassWord = @"1235789";
 @property (nonatomic, weak) IBOutlet UILabel *hintLabel;
 @property (nonatomic, copy) NSString *passWord;
 
-//@property (nonatomic, strong) TYGridPassWordView *passWordView;
-
 @end
 
 @implementation ViewController
@@ -29,11 +27,6 @@ static NSString* defaultPassWord = @"1235789";
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self.passWordLabel setText:[NSString stringWithFormat:@"PassWord:%@", defaultPassWord]];
-    
-//    self.passWordView = [[TYGridPassWordView alloc] init];
-//    [self.passWordView setFrame:CGRectMake(0, 200, 280, 280)];
-//    [self.view addSubview:self.passWordView];
-//    self.passWordView.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
