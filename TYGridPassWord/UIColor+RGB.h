@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIColor (RGB)
-
 #define UIColorMake(r, g, b, a) [[UIColor alloc] initWithRed:(r) green:(g) blue:(b) alpha: (a)];
+
+@interface UIColor (RGB)
 
 - (CGFloat)redColor;
 - (CGFloat)greenColor;

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Delegate-->
@@ -21,8 +22,8 @@
                                 <rect key="frame" x="160" y="160" width="280" height="280"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="280" id="2Se-ZJ-4VA"/>
-                                    <constraint firstAttribute="width" constant="280" id="ooO-sU-5dr"/>
+                                    <constraint firstAttribute="width" constant="280" id="H6F-pd-5gO"/>
+                                    <constraint firstAttribute="width" secondItem="I5F-HJ-OPY" secondAttribute="height" multiplier="1:1" id="mf9-3Q-WD4"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="WND-z0-AR9"/>
@@ -31,16 +32,16 @@
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4e-FB-Ora">
                                 <rect key="frame" x="0.0" y="123" width="600" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="FlE-M4-6fc"/>
+                                    <constraint firstAttribute="height" constant="21" id="1AF-ba-aN5"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NCM-ZU-AOX">
-                                <rect key="frame" x="0.0" y="86" width="600" height="21"/>
+                                <rect key="frame" x="0.0" y="84" width="600" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="Fl5-hp-8d3"/>
+                                    <constraint firstAttribute="height" constant="21" id="IUT-Xd-UfM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.47843137250000001" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -49,14 +50,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="w4e-FB-Ora" secondAttribute="trailing" id="Jbi-RC-DR1"/>
-                            <constraint firstAttribute="trailing" secondItem="NCM-ZU-AOX" secondAttribute="trailing" id="Opf-OD-c4E"/>
-                            <constraint firstItem="w4e-FB-Ora" firstAttribute="top" secondItem="NCM-ZU-AOX" secondAttribute="bottom" constant="16" id="fU0-lT-8Z8"/>
-                            <constraint firstItem="I5F-HJ-OPY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="imO-pn-32a"/>
-                            <constraint firstItem="I5F-HJ-OPY" firstAttribute="top" secondItem="w4e-FB-Ora" secondAttribute="bottom" constant="16" id="ofm-c5-6Bf"/>
-                            <constraint firstItem="I5F-HJ-OPY" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="wPI-YK-tyC"/>
-                            <constraint firstItem="w4e-FB-Ora" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="yKS-NQ-hyf"/>
-                            <constraint firstItem="NCM-ZU-AOX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zWW-lb-OsQ"/>
+                            <constraint firstItem="I5F-HJ-OPY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0KB-26-2fF"/>
+                            <constraint firstItem="I5F-HJ-OPY" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="EaF-sb-MZK"/>
+                            <constraint firstItem="NCM-ZU-AOX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="64" id="Vre-9p-ylc"/>
+                            <constraint firstAttribute="trailing" secondItem="NCM-ZU-AOX" secondAttribute="trailing" id="Vzq-dJ-5eR"/>
+                            <constraint firstItem="w4e-FB-Ora" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="gX5-ge-nMl"/>
+                            <constraint firstAttribute="trailing" secondItem="w4e-FB-Ora" secondAttribute="trailing" id="lxu-wD-PVv"/>
+                            <constraint firstItem="NCM-ZU-AOX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="qai-Cd-NLe"/>
+                            <constraint firstItem="w4e-FB-Ora" firstAttribute="top" secondItem="NCM-ZU-AOX" secondAttribute="bottom" constant="18" id="tmz-D9-u8j"/>
                         </constraints>
                     </view>
                     <connections>

@@ -9,18 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "UIColor+RGB.h"
 
+#define TYGridPassWordNodeColorNormol      UIColorMake(0.8, 0.8, 0.8, 1)
+#define TYGridPassWordNodeColorHighLight   UIColorMake(0, 0.478, 1, 1)
+#define TYGridPassWordNodeColorError       UIColorMake(1, 0, 0, 1)
+#define TYGridPassWordNodeSize             70
+
 typedef NS_ENUM(NSUInteger, TYGridPassWordNodeState)
 {
     TYGridPassWordNodeStateNormol = 1,
     TYGridPassWordNodeStateHighLight,
     TYGridPassWordNodeStateError,
 };
-
-
-#define TYGridPassWordNodeColorNormol      UIColorMake(0.8, 0.8, 0.8, 1)
-#define TYGridPassWordNodeColorHighLight   UIColorMake(0, 0.478, 1, 1)
-#define TYGridPassWordNodeColorError       UIColorMake(1, 0, 0, 1)
-#define TYGridPassWordNodeSize             70
 
 @interface TYGridPassWordNode : UIView
 

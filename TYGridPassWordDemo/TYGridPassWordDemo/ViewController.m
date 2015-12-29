@@ -40,17 +40,26 @@ static NSString* defaultPassWord = @"1235789";
 {
     if ([passWord isEqualToString:defaultPassWord])
     {
-        [self.hintLabel setText:@"Correct!!!"];
-        [self.hintLabel setTextColor:[[UIColor alloc] initWithRed:0 green:0.478 blue:1 alpha:1]];
-        [self.hintLabel setAlpha:1];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [UIView animateWithDuration:0.5 animations:^{
-                [self.hintLabel setAlpha:0];
-            }];
-        });
         return YES;
     }
     
+    return NO;
+}
+
+- (void)gridPassWordViewInputCorrect
+{
+    [self.hintLabel setText:@"Correct!!!"];
+    [self.hintLabel setTextColor:[[UIColor alloc] initWithRed:0 green:0.478 blue:1 alpha:1]];
+    [self.hintLabel setAlpha:1];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.5 animations:^{
+            [self.hintLabel setAlpha:0];
+        }];
+    });
+}
+
+- (void)gridPassWordViewInputError
+{
     [self.hintLabel setText:@"ERROR!!!"];
     [self.hintLabel setTextColor:[UIColor redColor]];
     [self.hintLabel setAlpha:1];
@@ -59,8 +68,6 @@ static NSString* defaultPassWord = @"1235789";
             [self.hintLabel setAlpha:0];
         }];
     });
-    
-    return NO;
 }
 
 @end

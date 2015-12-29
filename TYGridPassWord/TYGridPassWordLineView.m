@@ -7,7 +7,6 @@
 //
 
 #import "TYGridPassWordLineView.h"
-#import "TYGridPassWordView.h"
 #import "UIColor+RGB.h"
 
 @implementation TYGridPassWordLineView
@@ -19,8 +18,6 @@
     {
         // Initialization code
         [self setState:TYGridPassWordLineViewStateNormal];
-        [self setClipsToBounds:NO];
-        [self setFrame:CGRectMake(0, 0, TYGridPassWordViewSize, TYGridPassWordViewSize)];
         [self setBackgroundColor:[UIColor clearColor]];
     }
     return self;
@@ -33,7 +30,7 @@
         CGPoint p0 = [[self.arrayPoints objectAtIndex:0] CGPointValue];
         
         // translate Coord
-        translateCoordSystem(&p0);
+        [self translateCoordSystem:&p0];
         
         // prepare
         CGContextRef context = UIGraphicsGetCurrentContext();
@@ -68,7 +65,7 @@
         {
             CGPoint p1 = [[self.arrayPoints objectAtIndex:i] CGPointValue];
             // translate Coord
-            translateCoordSystem(&p1);
+            [self translateCoordSystem:&p1];
             CGContextAddLineToPoint(context, p1.x, p1.y);
         }
         
@@ -78,14 +75,14 @@
     }
 }
 
-void translateCoordSystem(CGPoint *point)
+- (void)translateCoordSystem:(CGPoint *)point
 {
     NSInteger mult = @([[UIScreen mainScreen] scale]).integerValue;
     // if retina screen
     point->x = point->x * mult;
     point->y = point->y * mult;
     // translate Coord System
-    point->y = mult * TYGridPassWordViewSize - point->y;
+    point->y = mult * self.frame.size.height - point->y;
 }
 
 @end

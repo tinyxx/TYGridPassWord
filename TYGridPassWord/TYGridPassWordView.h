@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#define TYGridPassWordViewSize              280    // must be bigger than 70*3 
 #define TYGridPassWordViewBackGroundColor   [UIColor whiteColor]
 #define TYGridPassWordViewTimeInterval      0.5
 
@@ -16,6 +15,11 @@
 
 @required
 - (BOOL)gridPassWordViewCapturePassWord:(NSString *)passWord;
+@optional
+- (void)gridPassWordViewBeginCapture;
+- (void)gridPassWordViewFinishCapture;
+- (void)gridPassWordViewInputCorrect;
+- (void)gridPassWordViewInputError;
 
 @end
 

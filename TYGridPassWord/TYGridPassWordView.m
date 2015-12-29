@@ -19,7 +19,6 @@
 @property (nonatomic, strong) NSMutableArray *arraySelect;
 @property (nonatomic, assign) BOOL isTouched;
 @property (nonatomic, assign) CGPoint movingPoint;
-@property (nonatomic, assign) dispatch_once_t once;
 
 @end
 
@@ -27,17 +26,20 @@
 
 - (void)layoutSubviews
 {
-    dispatch_once(&_once, ^{
-        [self configTYGridPassWordView];
-    });
+    [self configTYGridPassWordView];
 }
 
 - (void)configTYGridPassWordView
 {
+    [self.subviews enumerateObjectsUsingBlock:^(UIView * obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [obj removeFromSuperview];
+    }];
+    
     // round
     CGFloat startX = 0.0;
     CGFloat startY = 0.0;
-    CGFloat marigin = (TYGridPassWordViewSize - TYGridPassWordNodeSize * 3) / 2;
+    CGFloat mariginX = (self.frame.size.width - TYGridPassWordNodeSize * 3) / 2;
+    CGFloat mariginY = (self.frame.size.height - TYGridPassWordNodeSize * 3) / 2;
     
     NSMutableArray<TYGridPassWordNode *> *array = [[NSMutableArray alloc] init];
     for (int i=0; i<TYGridPassWordViewMatrixSize; i++)
@@ -52,18 +54,19 @@
             [array addObject:node];
             
             startX += node.frame.size.width;
-            startX += marigin;
+            startX += mariginX;
             tempLineHeight = node.frame.size.height;
         }
         
         startX = 0;
         startY += tempLineHeight;
-        startY += marigin;
+        startY += mariginY;
     }
     _arrayNodes = array;
     
     // Line
     _passWordLineView = [[TYGridPassWordLineView alloc] init];
+    [_passWordLineView setFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     [self addSubview:_passWordLineView];
     
     //
@@ -74,7 +77,7 @@
     // self
     [self setClipsToBounds:NO];
     [self setBackgroundColor:TYGridPassWordViewBackGroundColor];
-    [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, TYGridPassWordViewSize, TYGridPassWordViewSize)];
+    [self setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, self.frame.size.height)];
 }
 
 #pragma - mark touchs
@@ -89,6 +92,11 @@
     
     [self checkCircelIsSelect:p];
     [self refrushView];
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(gridPassWordViewBeginCapture)])
+    {
+        [_delegate gridPassWordViewBeginCapture];
+    }
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -104,25 +112,15 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    _isTouched = NO;
-    _movingPoint = CGPointZero;
-    
-    [self refrushView];
-    
-    if (_delegate && [_delegate respondsToSelector:@selector(gridPassWordViewCapturePassWord:)])
-    {
-        if (![_delegate gridPassWordViewCapturePassWord:[self passWord]])
-        {
-            [self showError];
-        }
-    }
-    
-    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-    [self performSelector:@selector(clearSelect) withObject:nil afterDelay:TYGridPassWordViewTimeInterval];
-    [[UIApplication sharedApplication] performSelector:@selector(endIgnoringInteractionEvents) withObject:nil afterDelay:TYGridPassWordViewTimeInterval];
+    [self touchesFinish:touches withEvent:event];
 }
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self touchesFinish:touches withEvent:event];
+}
+
+- (void)touchesFinish:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     _isTouched = NO;
     _movingPoint = CGPointZero;
@@ -131,9 +129,25 @@
     
     if (_delegate && [_delegate respondsToSelector:@selector(gridPassWordViewCapturePassWord:)])
     {
-        if (![_delegate gridPassWordViewCapturePassWord:[self passWord]])
+        if (_delegate && [_delegate respondsToSelector:@selector(gridPassWordViewFinishCapture)])
+        {
+            [_delegate gridPassWordViewFinishCapture];
+        }
+        
+        if ([_delegate gridPassWordViewCapturePassWord:[self passWord]])
+        {
+            if ([_delegate respondsToSelector:@selector(gridPassWordViewInputCorrect)])
+            {
+                [_delegate gridPassWordViewInputCorrect];
+            }
+        }
+        else
         {
             [self showError];
+            if ([_delegate respondsToSelector:@selector(gridPassWordViewInputError)])
+            {
+                [_delegate gridPassWordViewInputError];
+            }
         }
     }
     

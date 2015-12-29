@@ -18,6 +18,7 @@
     if (self)
     {
         // Initialization code
+        [self setState:TYGridPassWordNodeStateNormol];
         [self setBackgroundColor:[UIColor whiteColor]];
         [self setFrame:CGRectMake(0, 0, TYGridPassWordNodeSize, TYGridPassWordNodeSize)];
     }

@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+#define TYGridPassWordLineViewColorError        UIColorMake(1, 0, 0, 1)
+#define TYGridPassWordLineViewColorNormal       UIColorMake(0, 0.478, 1, 1)
+#define TYGridPassWordLineViewSingleLineWidth   8.0
+
 typedef NS_ENUM(NSUInteger, TYGridPassWordLineViewState)
 {
     TYGridPassWordLineViewStateNormal = 1,
     TYGridPassWordLineViewStateError,
 };
-
-#define TYGridPassWordLineViewColorError        UIColorMake(1, 0, 0, 1)
-#define TYGridPassWordLineViewColorNormal       UIColorMake(0, 0.478, 1, 1)
-#define TYGridPassWordLineViewSingleLineWidth   8.0
 
 @interface TYGridPassWordLineView : UIView
 

@@ -12,10 +12,10 @@
 @implementation UIColor (RGB)
 
 static void *kRGBDictKey = &kRGBDictKey;
-static const NSString *kRGBDictRedColorKey  = @"kRGBDictRedColorKey";
-static const NSString *kRGBDictGreenColorKey = @"kRGBDictGreenColorKey";
-static const NSString *kRGBDictBlueColorKey = @"kRGBDictBlueColorKey";
-static const NSString *kRGBDictAlphaKey     = @"kRGBDictAlphaKey";
+static const NSString *kRGBDictRedColorKey      = @"kRGBDictRedColorKey";
+static const NSString *kRGBDictGreenColorKey    = @"kRGBDictGreenColorKey";
+static const NSString *kRGBDictBlueColorKey     = @"kRGBDictBlueColorKey";
+static const NSString *kRGBDictAlphaKey         = @"kRGBDictAlphaKey";
 
 - (CGFloat)redColor
 {
@@ -42,7 +42,7 @@ static const NSString *kRGBDictAlphaKey     = @"kRGBDictAlphaKey";
     id obj = objc_getAssociatedObject(self, &kRGBDictKey);
     if (obj && [obj isKindOfClass:[NSDictionary class]])
     {
-        return (NSDictionary *)[obj copy];
+        return [(NSDictionary *)obj copy];
     }
     
     CGFloat red = 0.0;
