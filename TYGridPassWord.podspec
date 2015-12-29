@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.version      = "1.0.0"
   s.summary      = "A iOS7 Style Grid PassWord View by Objective-C."
   s.description  = <<-DESC
-                    A iOS7 Style Grid PassWord View by Objective-C
+                    A iOS7 Style Grid PassWord View used in iOS, which implement by Objective-C.
                    DESC
   s.homepage     = "https://github.com/tinyxx/TYGridPassWord"
   s.license      = "MIT"
